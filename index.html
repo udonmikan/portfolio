@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>うどんみかん　ポートフォリオ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic UI', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* プロフィールセクション */
+        .profile-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: center;
+            border: 3px solid #ffd1dc;
+        }
+
+        .profile-section h2 {
+            color: #ff6b6b;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            border-bottom: 3px solid #ffd1dc;
+            padding-bottom: 15px;
+        }
+
+        .profile-content h3 {
+            font-size: 2.2rem;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .qualification {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+        }
+
+        .profile-content p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            color: #ff6b6b;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #ffd1dc;
+            padding-bottom: 10px;
+        }
+
+        .link-list {
+            list-style: none;
+        }
+
+        .link-list li {
+            margin-bottom: 15px;
+        }
+
+        .link-item {
+            display: inline-block;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 154, 158, 0.3);
+            width: 100%;
+            text-align: center;
+        }
+
+        .link-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 154, 158, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+
+        .sns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .sns-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .sns-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+
+        .sns-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .coming-soon {
+            color: #999;
+            font-style: italic;
+        }
+
+        /* オススメ商品セクション */
+        .recommendations-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            border: 3px solid #ff6b6b;
+        }
+
+        .recommendations-section h2 {
+            color: #ff6b6b;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-align: center;
+            border-bottom: 3px solid #ffd1dc;
+            padding-bottom: 15px;
+        }
+
+        .tab-instruction {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: bold;
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 20px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn {
+            padding: 20px 40px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+            min-width: 160px;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #ff6b6b, #ff9a9e);
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        .tab-btn:hover {
+            background: linear-gradient(45deg, #ff6b6b, #ff9a9e);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-item {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .product-item:hover {
+            border-color: #ff9a9e;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+        }
+
+        .product-link {
+            display: inline-block;
+            width: 100%;
+            padding: 15px 25px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .product-link:hover {
+            transform: scale(1.02);
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            color: #666;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .sns-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tabs {
+                gap: 10px;
+                padding: 20px;
+            }
+
+            .tab-btn {
+                min-width: 120px;
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍜🍊 うどんみかん　ポートフォリオ</h1>
+            <p class="subtitle">Udonmikan Portfolio</p>
+        </header>
+
+        <!-- プロフィールセクション -->
+        <section class="profile-section">
+            <h2>👤 プロフィール</h2>
+            <div class="profile-content">
+                <h3>うどんみかん</h3>
+                <div class="qualification">日本化粧品検定 特級 コスメコンシェルジュ</div>
+                <p>ラインスタンプ、AI音楽などクリエイティブコンテンツの制作を行っています。<br>AIでできることの研究中です。<br>香川県に関すること、美容・コスメに関する専門知識を活かした情報発信も行っています。</p>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <section class="section">
+                <h2>🎵 音楽</h2>
+                <ul class="link-list">
+                    <li><a href="https://udonmikan.github.io/music/" class="link-item" target="_blank">udonmikan音楽紹介</a></li>
+                    <li><a href="https://udonmikan.github.io/.github.io/" class="link-item" target="_blank">Sanukiudonmikan音楽紹介</a></li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>📚 コンテンツ</h2>
+                <ul class="link-list">
+                    <li><a href="https://www.yomo-ehon.com/creators/8423" class="link-item" target="_blank">絵本紹介</a></li>
+                    <li><a href="https://udonmikan.github.io/beauty/" class="link-item" target="_blank">ノベルゲーム</a></li>
+                    <li><a href="#" class="link-item coming-soon">Amazon Kindle（準備中）</a></li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>🎨 その他</h2>
+                <ul class="link-list">
+                    <li><a href="https://store.line.me/stickershop/author/17232/ja" class="link-item" target="_blank">LINEスタンプ</a></li>
+                    <li><a href="https://ameblo.jp/udonkenmikan/" class="link-item" target="_blank">ブログ</a></li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2>📱 SNS</h2>
+                <div class="sns-grid">
+                    <a href="https://www.instagram.com/udon_mikan/" class="sns-link" target="_blank">
+                        <div class="sns-icon">📷</div>
+                        <div>Instagram</div>
+                    </a>
+                    <a href="https://x.com/udon_mikan" class="sns-link" target="_blank">
+                        <div class="sns-icon">🐦</div>
+                        <div>X (Twitter)</div>
+                    </a>
+                    <a href="https://www.tiktok.com/@udon_mikan" class="sns-link" target="_blank">
+                        <div class="sns-icon">🎵</div>
+                        <div>TikTok</div>
+                    </a>
+                    <a href="https://youtube.com/@udon_mikan?si=b7WCOo11ca4XQFvL" class="sns-link" target="_blank">
+                        <div class="sns-icon">📺</div>
+                        <div>YouTube</div>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- オススメ商品セクション -->
+        <section class="recommendations-section">
+            <h2>🛍️ オススメ商品</h2>
+            <div class="tab-instruction">
+                👇 下のボタンをクリックしてカテゴリを選択してください 👇
+            </div>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('cosmetics')">💄 化粧品</button>
+                <button class="tab-btn" onclick="showTab('goods')">🧴 化粧品雑貨</button>
+                <button class="tab-btn" onclick="showTab('health')">💊 健康食品</button>
+                <button class="tab-btn" onclick="showTab('others')">🎁 その他</button>
+            </div>
+            
+            <div id="cosmetics" class="tab-content active">
+                <div class="product-grid">
+                    <div class="product-item">
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18a580.aca13d61.4c18a581.d8889d47/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhugkumi%2Fr_creamshampoo_n%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/4c18a580.aca13d61.4c18a581.d8889d47/?me_id=1354955&item_id=10000308&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fhugkumi%2Fcabinet%2F06099131%2F08138488%2F08138492%2F250904_cocone_n_fv16.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18a580.aca13d61.4c18a581.d8889d47/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhugkumi%2Fr_creamshampoo_n%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">最大20%オフ+プレゼント★ 楽天1位 cocone クレイクリーム シャンプー トリートメント不要 クレイ クリームシャンプー オーガニック カラーキープ ヘアケア 時短 頭皮ケア オールインワン ダメージケア ココネシャンプー</a><br><span >価格：3,980円～（税込、送料無料)</span> <span style="color:#BBB">(2025/9/7時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18a580.aca13d61.4c18a581.d8889d47/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhugkumi%2Fr_creamshampoo_n%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18a580.aca13d61.4c18a581.d8889d47/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fhugkumi%2Fr_creamshampoo_n%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+                    </div>
+                    <div class="product-item">
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18afdb.558dec72.4c18afdc.e8279f94/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyunth%2F10000000%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/4c18afdb.558dec72.4c18afdc.e8279f94/?me_id=1409735&item_id=10000000&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fyunth%2Fcabinet%2F11294195%2F11294196%2F11840274%2F10000000_250906.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18afdb.558dec72.4c18afdc.e8279f94/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyunth%2F10000000%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">【P30％還元+セット7日23:59マデ】【公式】Yunth 生ビタミンC 美白美容液 1ml×28包 | 美容液 ビタミンC 導入美容液 先行美容液 ブースター 美白 ランキング おすすめ スキンケア スキンケアセット | ユンス ゆんす</a><br><span >価格：3,960円～（税込、送料無料)</span> <span style="color:#BBB">(2025/9/7時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18afdb.558dec72.4c18afdc.e8279f94/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyunth%2F10000000%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18afdb.558dec72.4c18afdc.e8279f94/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fyunth%2F10000000%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="goods" class="tab-content">
+                <div class="product-grid">
+                    <div class="product-item">
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18d381.e2333800.4c18d382.df759fae/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmtgec-beauty%2F1201310101%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/4c18d381.e2333800.4c18d382.df759fae/?me_id=1262320&item_id=10002091&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fmtgec-beauty%2Fcabinet%2Frefa%2Faile_brush%2Fimgrc0108482363.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18d381.e2333800.4c18d382.df759fae/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmtgec-beauty%2F1201310101%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">9/4～9/11送料無料！＼ ReFa公式／リファ エールブラシ ReFa AILE BRUSH ブラシ くし 防水 みがき ほぐし ヘアアレンジ ヘアケア ギフト プレゼント プチギフト 女性 女友達 彼女 妻 誕生日 ツヤツヤ 髪の毛 サラサラ 艶髪 正規品 敬老の日 誕生日 クリスマス</a><br><span >価格：3,800円～（税込、送料無料)</span> <span style="color:#BBB">(2025/9/7時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18d381.e2333800.4c18d382.df759fae/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmtgec-beauty%2F1201310101%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18d381.e2333800.4c18d382.df759fae/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fmtgec-beauty%2F1201310101%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="health" class="tab-content">
+                <div class="product-grid">
+<div class="product-item">
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18cb67.fa4822d6.4c18cb68.17ca4d88/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgreenplanet1967%2Fhemps002%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/4c18cb67.fa4822d6.4c18cb68.17ca4d88/?me_id=1427951&item_id=10003446&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fgreenplanet1967%2Fcabinet%2Fhemps-test-700%2Fhemps-protein-700%2Fprotein-01-140g-700.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18cb67.fa4822d6.4c18cb68.17ca4d88/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgreenplanet1967%2Fhemps002%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">ヘンププロテイン ｜ 140g ｜ 400g ｜ 1kg ｜ HEMPS ヘンプス オーガニック 無添加 有機JAS認証 植物性たんぱく質 ヘンプ 麻の実 パウダー 必須アミノ酸 オメガ3 鉄分 亜鉛 食物繊維 栄養機能食品 ダイエット プロテイン ヴィーガン グルテンフリー スーパーフード 低温圧搾</a><br><span >価格：1,188円～（税込、送料無料)</span> <span style="color:#BBB">(2025/9/7時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18cb67.fa4822d6.4c18cb68.17ca4d88/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgreenplanet1967%2Fhemps002%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18cb67.fa4822d6.4c18cb68.17ca4d88/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fgreenplanet1967%2Fhemps002%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>                    </div>
+
+
+                    <div class="product-item">
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18ab62.3cf60116.4c18ab64.516d3fb5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkirin-kyowahakko-bio%2Fimn004%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/4c18ab62.3cf60116.4c18ab64.516d3fb5/?me_id=1412786&item_id=10000037&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fkirin-kyowahakko-bio%2Fcabinet%2Fitem_img%2Fimn004_deal_20p_v2.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18ab62.3cf60116.4c18ab64.516d3fb5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkirin-kyowahakko-bio%2Fimn004%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">【送料無料】約15日分〜 キリン iMUSE ( イミューズ ) 免疫ケア ・ 内臓脂肪ダウン【機能性表示食品】[プラズマ乳酸菌 乳酸菌 葛の花イソフラボン イソフラボン サプリメント サプリ 内臓脂肪 おなか お腹の脂肪 ダイエット 免疫]</a><br><span >価格：3,280円～（税込、送料無料)</span> <span style="color:#BBB">(2025/9/7時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18ab62.3cf60116.4c18ab64.516d3fb5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkirin-kyowahakko-bio%2Fimn004%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18ab62.3cf60116.4c18ab64.516d3fb5/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkirin-kyowahakko-bio%2Fimn004%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="others" class="tab-content">
+                <div class="product-grid">
+                    <div class="product-item">
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18c7d6.e91f0279.4c18c7d7.8fc1d4ec/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fanker%2Fa1339%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/4c18c7d6.e91f0279.4c18c7d7.8fc1d4ec/?me_id=1294713&item_id=10001995&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fanker%2Fcabinet%2Fimages%2F09779934%2F11413859%2Fimgrc0090259325.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18c7d6.e91f0279.4c18c7d7.8fc1d4ec/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fanker%2Fa1339%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">【期間限定セール実施中 9/11まで】Anker Prime Power Bank (9600mAh, 65W, Fusion) (9600mAh 65W出力モバイルバッテリー搭載 65W出力USB充電器)【独自技術Anker GaN採用/USB Power Delivery対応/PSE技術基準適合/USB-C入力対応 / 65W出力】iPhone MacBook Android</a><br><span >価格：9,990円（税込、送料無料)</span> <span style="color:#BBB">(2025/9/7時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18c7d6.e91f0279.4c18c7d7.8fc1d4ec/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fanker%2Fa1339%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/4c18c7d6.e91f0279.4c18c7d7.8fc1d4ec/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fanker%2Fa1339%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 うどんみかん - All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // すべてのタブコンテンツを非表示に
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // すべてのタブボタンの active クラスを削除
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 選択されたタブを表示
+            document.getElementById(tabName).classList.add('active');
+            
+            // 対応するボタンを active に
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
