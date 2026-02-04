@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>うどんみかんの子育てLINEスタンプ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Zen Maru Gothic', sans-serif;
+            background-color: #fefaf4;
+            color: #5d4037;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(#ffe0b2 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+        }
+
+        /* ふわふわアニメーション */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .floating { animation: float 4s ease-in-out infinite; }
+
+        .video-container {
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 8px solid white;
+            border-radius: 2.5rem;
+        }
+
+        .stamp-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .bg-line { background-color: #06c755; }
+        .bg-x { background-color: #000000; }
+        .bg-facebook { background-color: #1877f2; }
+
+        /* AIセクション用スタイル */
+        .ai-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fff9f0 100%);
+            border: 2px solid #ffedda;
+        }
+
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: #5d4037;
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 12px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        .footer-link {
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 700;
+        }
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            bottom: -2px;
+            left: 0;
+            background-color: #ffcc80;
+            opacity: 0.4;
+            transition: opacity 0.3s;
+        }
+        .footer-link:hover::after {
+            opacity: 0.8;
+        }
+
+        /* ローディングアニメーション */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #ffcc80;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-pattern">
+
+    <div id="toast">コピーしました！</div>
+
+    <!-- ヘッダー -->
+    <header class="pt-8 pb-4 px-4 text-center">
+        <h1 class="text-2xl sm:text-4xl font-bold text-brown mb-2 leading-tight">
+            うどんみかんの<br class="sm:hidden">子育てLINEスタンプ
+        </h1>
+        <p class="text-xs sm:text-base opacity-75 font-medium tracking-wider">毎日がんばるママとパパに、ほっこり笑顔を</p>
+    </header>
+
+    <!-- メイン：動画セクション -->
+    <section class="max-w-xl mx-auto px-4 mb-10">
+        <div class="video-container relative overflow-hidden bg-white floating">
+            <video 
+                id="mainVideo"
+                class="w-full block" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+            >
+                <source src="hamuo.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="mt-8 text-center space-y-4">
+            <a href="#lineup" class="inline-flex items-center px-10 py-4 bg-orange-400 text-white rounded-full text-lg font-bold shadow-lg active:scale-95 transition-all hover:bg-orange-500">
+                ラインナップをみる 🎂
+            </a>
+            <p class="text-xs opacity-60">↓ AIがあなたの育児をちょっと楽しく応援！ ↓</p>
+        </div>
+    </section>
+
+    <!-- ✨ AIお助けサポーターセクション -->
+    <section class="max-w-4xl mx-auto px-4 py-12 mb-16">
+        <div class="ai-card rounded-[2.5rem] p-8 md:p-12 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10 text-6xl rotate-12">✨</div>
+            
+            <h2 class="text-2xl font-bold text-center mb-8 flex items-center justify-center">
+                <span class="mr-2">✨</span> AI育児応援サポーター
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- AIメッセージ生成 -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-lg text-brown border-l-4 border-orange-300 pl-3">メッセージ作成 ✨</h3>
+                    <p class="text-sm opacity-70">今の状況を教えてね。スタンプと一緒に送るぴったりの言葉を考えます！</p>
+                    <div class="relative">
+                        <textarea id="aiInput" class="w-full p-4 rounded-2xl border-2 border-orange-100 focus:border-orange-300 outline-none text-sm transition-all h-32" placeholder="例：やっと赤ちゃんが寝たよ / お買い物頼みたい"></textarea>
+                    </div>
+                    <button onclick="generateAIMessage()" id="generateBtn" class="w-full py-3 bg-orange-400 text-white rounded-full font-bold shadow-md hover:bg-orange-500 transition-all flex items-center justify-center">
+                        <span id="btnText">メッセージを考える ✨</span>
+                    </button>
+                    <div id="aiResult" class="hidden p-4 bg-white rounded-2xl border border-orange-50 text-sm italic text-brown leading-relaxed shadow-inner"></div>
+                </div>
+
+                <!-- AI応援メッセージ -->
+                <div class="space-y-4">
+                    <h3 class="font-bold text-lg text-brown border-l-4 border-pink-300 pl-3">今日のがんばり応援 ✨</h3>
+                    <p class="text-sm opacity-70">忙しいあなたに、AIから温かい癒やしのメッセージを贈ります。</p>
+                    <div class="h-32 flex items-center justify-center bg-white/50 rounded-2xl border-2 border-dashed border-pink-100 p-4">
+                        <p id="cheerResult" class="text-sm text-center text-brown font-medium">ボタンを押してみてね</p>
+                    </div>
+                    <button onclick="getCheerMessage()" id="cheerBtn" class="w-full py-3 bg-pink-400 text-white rounded-full font-bold shadow-md hover:bg-pink-500 transition-all flex items-center justify-center">
+                        応援メッセージをもらう ✨
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ラインナップセクション (スタンプ) -->
+    <section id="lineup" class="max-w-5xl mx-auto px-4 py-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 flex items-center justify-center">
+            <span class="text-yellow-400 mr-2">✨</span> スタンプ・ラインナップ <span class="text-yellow-400 ml-2">✨</span>
+        </h2>
+        <div id="stampList" class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <!-- JSで生成 -->
+        </div>
+    </section>
+
+    <!-- ラインナップセクション (絵文字) -->
+    <section id="emoji-lineup" class="max-w-5xl mx-auto px-4 py-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 flex items-center justify-center">
+            <span class="text-pink-400 mr-2">🎨</span> LINE絵文字・ラインナップ <span class="text-pink-400 ml-2">🎨</span>
+        </h2>
+        <div id="emojiList" class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <!-- JSで生成 -->
+        </div>
+    </section>
+
+    <!-- 紹介メッセージ -->
+    <section class="max-w-3xl mx-auto px-6 py-12 bg-white/80 rounded-[3rem] shadow-sm mb-16 text-center border-2 border-dashed border-orange-200">
+        <h3 class="text-xl font-bold mb-4">「うどんみかん」のスタンプって？</h3>
+        <p class="text-sm sm:text-base leading-loose mb-6">
+            「お着替えできた！」「今から帰るよ」<br>
+            忙しい子育ての合間に、言葉だけでは伝わらない<br>
+            <span class="font-bold text-orange-500">“ほっこり”</span> をお届けします。
+        </p>
+        <div class="flex justify-center space-x-4 text-2xl">
+            <span>🧸</span><span>🍼</span><span>👶</span><span>🏠</span>
+        </div>
+    </section>
+
+    <!-- シェアセクション -->
+    <section class="max-w-4xl mx-auto px-4 py-12 mb-20">
+        <div class="bg-white rounded-[2.5rem] p-8 text-center shadow-lg border border-orange-50 relative overflow-hidden">
+            <h2 class="text-xl font-bold mb-2">このページを教える</h2>
+            <div class="grid grid-cols-2 sm:flex sm:justify-center gap-6 mt-8">
+                <button onclick="shareSNS('line')" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 bg-line rounded-2xl flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.6-4.9-8.3-11-8.3S2 5.7 2 10.3c0 4.1 3.9 7.5 9.2 8.2.4.1.9.3 1 .7l.1 1.9c0 .4.3.5.6.3l2.8-2.1c2.1-.2 8.3-3.1 8.3-9z"/></svg>
+                    </div>
+                    <span class="text-xs mt-2 font-bold opacity-70">LINE</span>
+                </button>
+                <button onclick="shareSNS('x')" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 bg-x rounded-2xl flex items-center justify-center text-white shadow-md group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </div>
+                    <span class="text-xs mt-2 font-bold opacity-70">X</span>
+                </button>
+                <button onclick="copyURL()" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 bg-gray-200 rounded-2xl flex items-center justify-center text-gray-600 shadow-md group-hover:scale-110 transition-transform">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    </div>
+                    <span class="text-xs mt-2 font-bold opacity-70">コピー</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-white/95 py-12 text-center border-t border-gray-100">
+        <p class="text-xs sm:text-sm opacity-60">
+            © <a href="https://udonmikan.github.io/portfolio/" target="_blank" class="footer-link">うどんみかん</a> All Rights Reserved.
+        </p>
+    </footer>
+
+    <input type="text" id="copyInput" style="position: absolute; left: -9999px;">
+
+    <script>
+        const apiKey = ""; // Gemini API Key
+
+        // スタンプデータ
+        const STAMP_LIST = [
+            { id: "32734717", title: "はむおの育児・子育てスタンプ【日本語】", desc: "毎日の育児シーンに寄り添う、ほっこりスタンプ。" },
+            { id: "32733388", title: "はむおの育児・子育てスタンプ【文字なし】", desc: "文字なしで色んなシーンに対応" }
+        ];
+
+        // 絵文字データ
+        const EMOJI_LIST = [
+            { id: "69800ee814bcdb346ea25851", title: "育児・子育てドット絵文字", desc: "メッセージの合間にちょこんと可愛い。妊娠中から使える育児の絵文字セット！" },
+            { id: "6983062a26782733e6b55f28", title: "はむお育児・子育てドット絵文字", desc: "日常会話に添えるかわいい赤ちゃんハムスターはむおと家族の育児・子育て。育児トークがもっと賑やかに！" }
+        ];
+
+        // --- Gemini API 連携用共通関数 ---
+        async function callGemini(prompt, systemInstruction) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: systemInstruction }] }
+            };
+
+            let delay = 1000;
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+                    if (result.candidates?.[0]?.content?.parts?.[0]?.text) {
+                        return result.candidates[0].content.parts[0].text;
+                    }
+                } catch (err) {
+                    if (i === 4) throw err;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                }
+            }
+            throw new Error('API呼び出しに失敗しました');
+        }
+
+        // 1. AIメッセージ生成 ✨
+        async function generateAIMessage() {
+            const input = document.getElementById('aiInput').value.trim();
+            if (!input) return;
+
+            const btn = document.getElementById('generateBtn');
+            const resultDiv = document.getElementById('aiResult');
+            const btnText = document.getElementById('btnText');
+
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="loader"></span>考え中...';
+            resultDiv.classList.add('hidden');
+
+            const systemPrompt = `
+                あなたは「うどんみかんの子育てLINEスタンプ」の公式サポーターです。
+                ユーザーが入力した子育て中のシチュエーションに対して、LINEで送るのにぴったりな「短くて可愛い、ほっこりするメッセージ」を2〜3つ提案してください。
+                最後に、利用可能なスタンプ（${STAMP_LIST.map(s => s.title).join(', ')}）のうち、どれがそのメッセージに合うかも一言添えてください。
+                トーンは、優しく、可愛らしく、ユーモアを交えて。
+            `;
+
+            try {
+                const response = await callGemini(input, systemPrompt);
+                resultDiv.innerText = response;
+                resultDiv.classList.remove('hidden');
+            } catch (err) {
+                resultDiv.innerText = "ごめんなさい、ちょっと考えがまとまりませんでした。もう一度試してみてね！";
+                resultDiv.classList.remove('hidden');
+            } finally {
+                btn.disabled = false;
+                btnText.innerText = "メッセージを考える ✨";
+            }
+        }
+
+        // 2. AI応援メッセージ ✨
+        async function getCheerMessage() {
+            const cheerBtn = document.getElementById('cheerBtn');
+            const cheerResult = document.getElementById('cheerResult');
+
+            cheerBtn.disabled = true;
+            cheerBtn.innerHTML = '<span class="loader"></span>癒やしを生成中...';
+
+            const systemPrompt = `
+                あなたは子育てを応援する「うどんみかん」の優しい妖精です。
+                毎日がんばっているママやパパに向けて、100文字以内の「温かくて癒やされる応援メッセージ」を1つだけ生成してください。
+                「あなたは十分がんばってるよ」「たまには自分を甘やかしてね」といったニュアンスを含めてください。
+                絵文字も適度に使って、読みやすく。
+            `;
+
+            try {
+                const response = await callGemini("応援メッセージをください", systemPrompt);
+                cheerResult.innerText = response;
+            } catch (err) {
+                cheerResult.innerText = "今日も本当にお疲れさま。あなたは素晴らしい親だよ！✨";
+            } finally {
+                cheerBtn.disabled = false;
+                cheerBtn.innerText = "応援メッセージをもらう ✨";
+            }
+        }
+
+        // スタンプ描画
+        function renderStamps() {
+            const container = document.getElementById('stampList');
+            container.innerHTML = '';
+            STAMP_LIST.forEach(stamp => {
+                const imageUrl = `https://stickershop.line-scdn.net/stickershop/v1/product/${stamp.id}/LINEStorePC/main.png`;
+                const storeUrl = `https://store.line.me/stickershop/product/${stamp.id}/ja`;
+                const card = document.createElement('div');
+                card.className = "stamp-card bg-white rounded-[2.5rem] p-6 shadow-md border border-orange-50 flex flex-col items-center text-center transition-all duration-300";
+                card.innerHTML = `
+                    <div class="w-full aspect-square mb-4 bg-orange-50/30 rounded-3xl flex items-center justify-center overflow-hidden">
+                        <img src="${imageUrl}" alt="${stamp.title}" class="w-4/5 h-4/5 object-contain" onerror="this.src='https://via.placeholder.com/300?text=LINE+STAMP'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 tracking-wide">${stamp.title}</h3>
+                    <p class="text-sm opacity-70 mb-8 flex-grow leading-relaxed px-4">${stamp.desc}</p>
+                    <a href="${storeUrl}" target="_blank" class="w-full py-4 bg-line text-white rounded-full font-bold flex items-center justify-center shadow-sm hover:shadow-lg transition-all active:scale-95">
+                        ストアをみる 🛍️
+                    </a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 絵文字描画
+        function renderEmojis() {
+            const container = document.getElementById('emojiList');
+            container.innerHTML = '';
+            EMOJI_LIST.forEach(emoji => {
+                // 絵文字の画像URL
+                const imageUrl = `https://stickershop.line-scdn.net/emojishop/v1/product/${emoji.id}/iphone/main.png`;
+                const storeUrl = `https://store.line.me/emojishop/product/${emoji.id}/ja`;
+                const card = document.createElement('div');
+                card.className = "stamp-card bg-white rounded-[2.5rem] p-6 shadow-md border border-pink-50 flex flex-col items-center text-center transition-all duration-300";
+                card.innerHTML = `
+                    <div class="w-full aspect-square mb-4 bg-pink-50/30 rounded-3xl flex items-center justify-center overflow-hidden">
+                        <img src="${imageUrl}" alt="${emoji.title}" class="w-4/5 h-4/5 object-contain" onerror="this.src='https://via.placeholder.com/300?text=LINE+EMOJI'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 tracking-wide">${emoji.title}</h3>
+                    <p class="text-sm opacity-70 mb-8 flex-grow leading-relaxed px-4">${emoji.desc}</p>
+                    <a href="${storeUrl}" target="_blank" class="w-full py-4 bg-pink-400 text-white rounded-full font-bold flex items-center justify-center shadow-sm hover:shadow-lg transition-all active:scale-95">
+                        ストアをみる 🎨
+                    </a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function shareSNS(type) {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent("うどんみかんの子育てLINEスタンプが可愛い！👶✨");
+            let shareUrl = "";
+            switch(type) {
+                case 'line': shareUrl = `https://line.me/R/msg/text/?${text}%20${url}`; break;
+                case 'x': shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`; break;
+            }
+            if(shareUrl) window.open(shareUrl, '_blank');
+        }
+
+        function copyURL() {
+            const copyInput = document.getElementById('copyInput');
+            copyInput.value = window.location.href;
+            copyInput.select();
+            copyInput.setSelectionRange(0, 99999);
+            try { document.execCommand('copy'); showToast(); } catch (err) {}
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.className = "show";
+            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderStamps();
+            renderEmojis();
+            const v = document.getElementById('mainVideo');
+            if(v) v.play().catch(() => {});
+        });
+    </script>
+</body>
+</html>
