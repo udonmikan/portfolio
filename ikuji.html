@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>うどんみかんの子育てLINEスタンプ</title>
+    <title>うどんみかんのAI子育てLINEスタンプ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -117,7 +117,7 @@
     <!-- ヘッダー -->
     <header class="pt-8 pb-4 px-4 text-center">
         <h1 class="text-2xl sm:text-4xl font-bold text-brown mb-2 leading-tight">
-            うどんみかんの<br class="sm:hidden">子育てLINEスタンプ
+            うどんみかんの<br class="sm:hidden">AI子育てLINEスタンプ
         </h1>
         <p class="text-xs sm:text-base opacity-75 font-medium tracking-wider">毎日がんばるママとパパに、ほっこり笑顔を</p>
     </header>
@@ -133,7 +133,7 @@
                 loop 
                 playsinline
             >
-                <source src="hamuo.mp4" type="video/mp4">
+                <source src="gemini_generated_video_1017CAC4.mp4" type="video/mp4">
             </video>
         </div>
         <div class="mt-8 text-center space-y-4">
@@ -185,7 +185,7 @@
     <!-- ラインナップセクション (スタンプ) -->
     <section id="lineup" class="max-w-5xl mx-auto px-4 py-12">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 flex items-center justify-center">
-            <span class="text-yellow-400 mr-2">✨</span> スタンプ・ラインナップ <span class="text-yellow-400 ml-2">✨</span>
+            <span class="text-yellow-400 mr-2">✨</span> AIスタンプ・ラインナップ <span class="text-yellow-400 ml-2">✨</span>
         </h2>
         <div id="stampList" class="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <!-- JSで生成 -->
@@ -195,7 +195,7 @@
     <!-- ラインナップセクション (絵文字) -->
     <section id="emoji-lineup" class="max-w-5xl mx-auto px-4 py-12">
         <h2 class="text-2xl sm:text-3xl font-bold text-center mb-10 flex items-center justify-center">
-            <span class="text-pink-400 mr-2">🎨</span> LINE絵文字・ラインナップ <span class="text-pink-400 ml-2">🎨</span>
+            <span class="text-pink-400 mr-2">🎨</span>AI絵文字・ラインナップ <span class="text-pink-400 ml-2">🎨</span>
         </h2>
         <div id="emojiList" class="grid grid-cols-1 sm:grid-cols-2 gap-8">
             <!-- JSで生成 -->
@@ -377,20 +377,15 @@
             });
         }
 
-        // 絵文字描画
+        // 絵文字描画 (画像表示部分を削除)
         function renderEmojis() {
             const container = document.getElementById('emojiList');
             container.innerHTML = '';
             EMOJI_LIST.forEach(emoji => {
-                // 絵文字の画像URL
-                const imageUrl = `https://stickershop.line-scdn.net/emojishop/v1/product/${emoji.id}/iphone/main.png`;
                 const storeUrl = `https://store.line.me/emojishop/product/${emoji.id}/ja`;
                 const card = document.createElement('div');
                 card.className = "stamp-card bg-white rounded-[2.5rem] p-6 shadow-md border border-pink-50 flex flex-col items-center text-center transition-all duration-300";
                 card.innerHTML = `
-                    <div class="w-full aspect-square mb-4 bg-pink-50/30 rounded-3xl flex items-center justify-center overflow-hidden">
-                        <img src="${imageUrl}" alt="${emoji.title}" class="w-4/5 h-4/5 object-contain" onerror="this.src='https://via.placeholder.com/300?text=LINE+EMOJI'">
-                    </div>
                     <h3 class="text-xl font-bold mb-2 tracking-wide">${emoji.title}</h3>
                     <p class="text-sm opacity-70 mb-8 flex-grow leading-relaxed px-4">${emoji.desc}</p>
                     <a href="${storeUrl}" target="_blank" class="w-full py-4 bg-pink-400 text-white rounded-full font-bold flex items-center justify-center shadow-sm hover:shadow-lg transition-all active:scale-95">
