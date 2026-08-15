@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あかちゃんヨシ！グッズ＆育児ステーション | うどんみかん</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Zen Maru Gothic & M PLUS Rounded 1c -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;900&family=Zen+Maru+Gothic:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FFFBF5',
+                        warmbrown: '#5D4037',
+                        yoshiorange: '#FF8A3D',
+                        yoshiyellow: '#FFC72C',
+                        softpink: '#FFEDF3',
+                        softgreen: '#E8F5E9',
+                        softblue: '#E3F2FD',
+                        suzuri: '#222222'
+                    },
+                    fontFamily: {
+                        rounded: ['"M PLUS Rounded 1c"', '"Zen Maru Gothic"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Zen Maru Gothic', 'M PLUS Rounded 1c', sans-serif;
+            background-color: #FFFBF5;
+            color: #5D4037;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ドット背景パターン */
+        .bg-dot-pattern {
+            background-image: radial-gradient(#FFD1A4 2px, transparent 2px);
+            background-size: 28px 28px;
+        }
+
+        /* ふんわり浮遊アニメーション */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
+        }
+
+        /* ぽよんっと弾むアニメーション */
+        @keyframes popPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pop {
+            animation: popPulse 2.5s ease-in-out infinite;
+        }
+
+        /* カードのホバー立体感 */
+        .card-cute {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .card-cute:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px -8px rgba(255, 138, 61, 0.2);
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF5EA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFB787;
+            border-radius: 5px;
+        }
+
+        /* トースト通知 */
+        #toast {
+            visibility: hidden;
+            min-width: 240px;
+            background-color: #5D4037;
+            color: #FFF;
+            text-align: center;
+            border-radius: 50px;
+            padding: 14px 24px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 40px;
+            transform: translateX(-50%);
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.4s, fadeout 0.4s 2.6s;
+        }
+        @keyframes fadein { from { bottom: 10px; opacity: 0; } to { bottom: 40px; opacity: 1; } }
+        @keyframes fadeout { from { bottom: 40px; opacity: 1; } to { bottom: 10px; opacity: 0; } }
+    </style>
+</head>
+<body class="bg-dot-pattern min-h-screen flex flex-col">
+
+    <!-- トースト通知 -->
+    <div id="toast">📋 リンクをコピーしました！</div>
+
+    <!-- ナビゲーションバー -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-2 border-orange-100 px-4 py-3 shadow-sm">
+        <div class="max-w-6xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 font-black text-xl sm:text-2xl text-yoshiorange tracking-tight hover:opacity-80 transition">
+                <span class="text-2xl">👶</span>
+                <span>あかちゃんヨシ！</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6 font-bold text-sm text-warmbrown">
+                <a href="#video-section" class="hover:text-yoshiorange transition">ムービー</a>
+                <a href="#suzuri-goods" class="hover:text-yoshiorange transition">公式グッズ</a>
+                <a href="#childcare-tips" class="hover:text-yoshiorange transition">月齢ワンポイント</a>
+                <a href="#line-stamps" class="hover:text-yoshiorange transition">スタンプ・絵文字</a>
+            </div>
+            <a href="#suzuri-goods" class="bg-yoshiorange hover:bg-orange-600 text-white font-black text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition transform active:scale-95 flex items-center gap-1">
+                <span>SUZURIを見る</span>
+                <span>🛍️</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ヒーローヘッダー -->
+    <header class="pt-10 pb-6 px-4 text-center relative overflow-hidden">
+        <div class="max-w-3xl mx-auto relative z-10">
+            <div class="inline-flex items-center gap-2 bg-orange-100 text-yoshiorange px-4 py-1.5 rounded-full text-xs sm:text-sm font-black mb-4 animate-pop">
+                <span>✨ うどんみかん 子育て応援グッズ ✨</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black text-warmbrown leading-tight tracking-tight mb-4">
+                毎日頑張るパパ・ママに！<br>
+                <span class="text-yoshiorange relative inline-block">
+                    「あかちゃんヨシ！」
+                    <svg class="absolute -bottom-2 left-0 w-full h-3 text-yoshiyellow opacity-80" viewBox="0 0 100 20" preserveAspectRatio="none">
+                        <path d="M0,10 Q50,20 100,10" stroke="currentColor" stroke-width="8" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                ステーション
+            </h1>
+            <p class="text-base sm:text-lg font-bold text-warmbrown/80 max-w-xl mx-auto leading-relaxed">
+                車に乗っていますグッズから、思わずほっこりするLINEスタンプ、月齢別のプチアドバイスまでギュッと詰まった癒やし空間です♪
+            </p>
+        </div>
+
+        <!-- 背景の装飾アイコン -->
+        <span class="absolute top-8 left-6 text-4xl sm:text-5xl opacity-40 animate-float" style="animation-delay: 0s;">👶</span>
+        <span class="absolute top-16 right-8 text-4xl sm:text-5xl opacity-40 animate-float" style="animation-delay: 1s;">🚗</span>
+        <span class="absolute bottom-4 left-1/4 text-3xl opacity-30 animate-float" style="animation-delay: 1.5s;">🍼</span>
+        <span class="absolute bottom-2 right-1/4 text-3xl opacity-30 animate-float" style="animation-delay: 0.5s;">🧸</span>
+    </header>
+
+    <!-- 動画・アニメーション挿入エリア（レスポンシブ動画枠） -->
+    <section id="video-section" class="max-w-3xl mx-auto px-4 my-8 text-center">
+        <div class="bg-white p-4 sm:p-6 rounded-[2.5rem] shadow-xl border-4 border-dashed border-orange-200 relative">
+            <div class="mb-3 flex items-center justify-center gap-2">
+                <span class="bg-yoshiyellow/30 text-yoshiorange px-3 py-1 rounded-full text-xs font-black">SPECIAL MOVIE</span>
+                <span class="text-xs font-bold text-warmbrown/70">ムービーエリア</span>
+            </div>
+
+            <!-- 動画挿入用フレーム -->
+            <div class="relative w-full max-w-2xl mx-auto rounded-3xl overflow-hidden bg-gradient-to-br from-amber-50 to-orange-100 border-4 border-white shadow-inner flex flex-col items-center justify-center min-h-[240px]">
+                <video class="w-full h-auto rounded-2xl block" autoplay loop muted playsinline controls>
+                    <source src="yoshi.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm font-bold text-warmbrown">
+                <span class="bg-orange-50 px-3 py-1.5 rounded-full border border-orange-100">✨ AI baby design</span>
+                <span class="bg-orange-50 px-3 py-1.5 rounded-full border border-orange-100">🎨 Illustrator tuned</span>
+                <span class="bg-orange-50 px-3 py-1.5 rounded-full border border-orange-100">👍 あかちゃんヨシ！</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- メインコンテンツ：SUZURI グッズ販売セクション -->
+    <section id="suzuri-goods" class="max-w-6xl mx-auto px-4 py-12 my-6">
+        <div class="bg-white rounded-[3rem] p-6 sm:p-12 shadow-xl border-2 border-orange-100 relative">
+            
+            <!-- セクションタイトル -->
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <span class="text-xs sm:text-sm font-black text-yoshiorange tracking-wider bg-orange-100 px-4 py-1.5 rounded-full inline-block mb-3">
+                    OFFICIAL SUZURI SHOP
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-warmbrown flex items-center justify-center gap-2">
+                    <span>🚗</span>
+                    <span>あかちゃんヨシ！ グッズ</span>
+                    <span>✨</span>
+                </h2>
+                <p class="mt-3 text-sm sm:text-base font-bold text-warmbrown/80 leading-relaxed">
+                    AIでデザイン＆Illustratorで仕上げたオリジナルグッズ！「初心者マーク」や「赤ちゃんが乗っています」など、安全と可愛さを周囲に届けるラインナップです。
+                </p>
+            </div>
+
+            <!-- あかちゃんヨシ！ グッズ全体イメージ画像 -->
+            <div class="max-w-md mx-auto mb-12 text-center">
+                <div class="relative p-3 bg-gradient-to-b from-orange-100 to-amber-50 rounded-[2.5rem] border-4 border-orange-200 shadow-lg">
+                    <img src="image.png" alt="あかちゃんヨシ！ グッズ全体イメージ" class="w-full h-auto rounded-[2rem] object-contain mx-auto shadow-sm">
+                    <div class="mt-3 pb-1">
+                        <span class="bg-white text-yoshiorange text-xs sm:text-sm font-black px-4 py-1.5 rounded-full border border-orange-200 shadow-xs inline-block">
+                            🔰 あかちゃんヨシ！公式デザインイメージ
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- カテゴリフィルター -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8" id="goods-filter">
+                <button onclick="filterGoods('all')" class="filter-btn active bg-yoshiorange text-white font-bold text-xs sm:text-sm px-5 py-2 rounded-full shadow-sm transition">すべて</button>
+                <button onclick="filterGoods('car')" class="filter-btn bg-orange-50 hover:bg-orange-100 text-warmbrown font-bold text-xs sm:text-sm px-5 py-2 rounded-full border border-orange-200 transition">車・おでかけ 🚗</button>
+                <button onclick="filterGoods('apparel')" class="filter-btn bg-orange-50 hover:bg-orange-100 text-warmbrown font-bold text-xs sm:text-sm px-5 py-2 rounded-full border border-orange-200 transition">ウエア・キッズ 👕</button>
+                <button onclick="filterGoods('goods')" class="filter-btn bg-orange-50 hover:bg-orange-100 text-warmbrown font-bold text-xs sm:text-sm px-5 py-2 rounded-full border border-orange-200 transition">雑貨・バッグ ☕</button>
+            </div>
+
+            <!-- グッズグリッド表示エリア -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="goods-grid">
+                <!-- JavaScriptで自動挿入 -->
+            </div>
+
+            <!-- SUZURIセクションリンクバナー -->
+            <div class="mt-12 text-center">
+                <a href="https://suzuri.jp/udonmikan/sections/62259?utm_source=twitter&utm_medium=social&utm_campaign=section_share" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="inline-flex items-center gap-3 bg-suzuri hover:bg-black text-white font-black text-base sm:text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition transform hover:-translate-y-1 active:scale-95">
+                    <span>SUZURIの「あかちゃんヨシ！」全グッズを見る</span>
+                    <span class="text-xl">👉</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 月齢順 育児ワンポイントアドバイス -->
+    <section id="childcare-tips" class="max-w-5xl mx-auto px-4 py-12 my-6">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+            <span class="text-xs sm:text-sm font-black text-emerald-600 tracking-wider bg-emerald-100 px-4 py-1.5 rounded-full inline-block mb-3">
+                FOR MAMA & PAPA
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-black text-warmbrown flex items-center justify-center gap-2">
+                <span>🌱</span>
+                <span>月齢別 育児ワンポイント</span>
+                <span>👍</span>
+            </h2>
+            <p class="mt-3 text-sm sm:text-base font-bold text-warmbrown/80">
+                焦らず、比べず、のんびりと。「今日も無事に過ごせたらそれでヨシ！」
+            </p>
+        </div>
+
+        <!-- 月齢タブ -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+            <button onclick="switchTip('0-3')" id="tab-0-3" class="tip-tab bg-white text-warmbrown font-black p-4 rounded-2xl border-2 border-emerald-200 shadow-sm hover:border-emerald-400 transition text-center active-tab">
+                <div class="text-xl mb-1">🍼</div>
+                <div class="text-xs text-emerald-600">0〜3ヶ月頃</div>
+                <div class="text-sm">ねんね期</div>
+            </button>
+            <button onclick="switchTip('4-6')" id="tab-4-6" class="tip-tab bg-white text-warmbrown font-black p-4 rounded-2xl border-2 border-orange-200 shadow-sm hover:border-orange-400 transition text-center">
+                <div class="text-xl mb-1">🥣</div>
+                <div class="text-xs text-yoshiorange">4〜6ヶ月頃</div>
+                <div class="text-sm">首すわり・離乳食</div>
+            </button>
+            <button onclick="switchTip('7-11')" id="tab-7-11" class="tip-tab bg-white text-warmbrown font-black p-4 rounded-2xl border-2 border-amber-200 shadow-sm hover:border-amber-400 transition text-center">
+                <div class="text-xl mb-1">🚼</div>
+                <div class="text-xs text-amber-600">7〜11ヶ月頃</div>
+                <div class="text-sm">おすわり・ハイハイ</div>
+            </button>
+            <button onclick="switchTip('12plus')" id="tab-12plus" class="tip-tab bg-white text-warmbrown font-black p-4 rounded-2xl border-2 border-rose-200 shadow-sm hover:border-rose-400 transition text-center">
+                <div class="text-xl mb-1">👟</div>
+                <div class="text-xs text-rose-500">1歳〜</div>
+                <div class="text-sm">あんよ・自我の芽生え</div>
+            </button>
+        </div>
+
+        <!-- アドバイス表示カード -->
+        <div id="tip-content" class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border-2 border-orange-100 relative overflow-hidden transition-all duration-300">
+            <!-- JSで切り替え -->
+        </div>
+    </section>
+
+    <!-- LINEスタンプ & 絵文字 セクション -->
+    <section id="line-stamps" class="max-w-6xl mx-auto px-4 py-12 my-6">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs sm:text-sm font-black text-green-600 tracking-wider bg-green-100 px-4 py-1.5 rounded-full inline-block mb-3">
+                LINE STAMPS & EMOJI
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-black text-warmbrown flex items-center justify-center gap-2">
+                <span>💬</span>
+                <span>うどんみかんのLINEコンテンツ</span>
+                <span>✨</span>
+            </h2>
+            <p class="mt-3 text-sm sm:text-base font-bold text-warmbrown/80">
+                毎日の子育てトークを、もっとほっこり可愛く！
+            </p>
+        </div>
+
+        <!-- スタンプ＆絵文字グリッド -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- スタンプエリア -->
+            <div class="bg-white rounded-[2.5rem] p-6 sm:p-8 shadow-lg border-2 border-green-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
+                        <span class="text-2xl">🐻</span>
+                        <h3 class="text-xl font-black text-warmbrown">LINEスタンプ シリーズ</h3>
+                    </div>
+                    <div id="stampList" class="space-y-6">
+                        <!-- JSで描画 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 絵文字エリア -->
+            <div class="bg-white rounded-[2.5rem] p-6 sm:p-8 shadow-lg border-2 border-pink-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
+                        <span class="text-2xl">🎨</span>
+                        <h3 class="text-xl font-black text-warmbrown">LINE絵文字 シリーズ</h3>
+                    </div>
+                    <div id="emojiList" class="space-y-6">
+                        <!-- JSで描画 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- うどんみかん紹介 ＆ メッセージ -->
+    <section class="max-w-3xl mx-auto px-4 py-10 my-6">
+        <div class="bg-gradient-to-r from-orange-100/80 via-amber-100/80 to-yellow-100/80 rounded-[2.5rem] p-8 sm:p-12 text-center border-2 border-dashed border-orange-300 shadow-sm relative">
+            <span class="text-4xl mb-4 inline-block animate-float">🍊</span>
+            <h3 class="text-2xl font-black text-warmbrown mb-4">「うどんみかん」のAI子育てづくり</h3>
+            <p class="text-sm sm:text-base font-bold text-warmbrown/90 leading-relaxed max-w-xl mx-auto mb-6">
+                「あかちゃんヨシ！」は、AI技術で誕生した愛らしい赤ちゃんの表情を、Illustratorで一部加工して生まれました。<br>
+                毎日の子育てで、少し疲れたときや車での移動時、ふと笑顔になれるような温もりをお届けします。
+            </p>
+            <a href="https://udonmikan.github.io/portfolio/" target="_blank" class="inline-flex items-center gap-2 bg-white text-warmbrown hover:text-yoshiorange font-black text-sm px-6 py-3 rounded-full shadow-md hover:shadow-lg transition">
+                <span>うどんみかんのポートフォリオ</span>
+                <span>🔗</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- シェアセクション -->
+    <section class="max-w-4xl mx-auto px-4 py-8 mb-12">
+        <div class="bg-white rounded-3xl p-8 text-center shadow-lg border border-orange-100">
+            <h3 class="text-lg font-black text-warmbrown mb-6">このページを子育て仲間に教える</h3>
+            <div class="flex flex-wrap justify-center gap-6">
+                <button onclick="shareSNS('line')" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 bg-[#06C755] rounded-2xl flex items-center justify-center text-white shadow-md group-hover:scale-110 transition">
+                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.3c0-4.6-4.9-8.3-11-8.3S2 5.7 2 10.3c0 4.1 3.9 7.5 9.2 8.2.4.1.9.3 1 .7l.1 1.9c0 .4.3.5.6.3l2.8-2.1c2.1-.2 8.3-3.1 8.3-9z"/></svg>
+                    </div>
+                    <span class="text-xs font-bold mt-2 text-warmbrown/80">LINEで送る</span>
+                </button>
+                <button onclick="shareSNS('x')" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 bg-black rounded-2xl flex items-center justify-center text-white shadow-md group-hover:scale-110 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </div>
+                    <span class="text-xs font-bold mt-2 text-warmbrown/80">Xでシェア</span>
+                </button>
+                <button onclick="copyURL()" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-yoshiorange shadow-md group-hover:scale-110 transition">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    </div>
+                    <span class="text-xs font-bold mt-2 text-warmbrown/80">URLコピー</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="mt-auto bg-white py-8 border-t border-orange-100 text-center font-bold text-xs sm:text-sm text-warmbrown/70">
+        <p>© <a href="https://udonmikan.github.io/portfolio/" target="_blank" class="hover:text-yoshiorange underline underline-offset-4">うどんみかん</a> All Rights Reserved.</p>
+        <p class="mt-1 text-xs opacity-60">AI Childcare Stamps & Goods Station</p>
+    </footer>
+
+    <!-- 非表示コピペ用input -->
+    <input type="text" id="copyInput" class="sr-only" aria-hidden="true">
+
+    <!-- JavaScript -->
+    <script>
+        // ==========================================
+        // SUZURI グッズデータ（カード用）
+        // ==========================================
+        const SUZURI_GOODS = [
+            {
+                id: 1,
+                title: "あかちゃんヨシ！(車に乗っています)",
+                category: "car",
+                categoryLabel: "車・マグネット/ステッカー",
+                desc: "「赤ちゃんが乗っています」をお知らせ！後続車にもやさしい笑顔と「ヨシ！」をお届け。",
+                price: "622",
+                badge: "人気🚗",
+                url: "https://suzuri.jp/udonmikan/20696202/sticker/m/white"
+            },
+            {
+                id: 2,
+                title: "あかちゃんヨシ！ Tシャツ",
+                category: "apparel",
+                categoryLabel: "キッズ・大人Tシャツ",
+                desc: "着るだけで周りがなごむ可愛さ。親子でおそろいコーデにもぴったりのデザインです。",
+                price: "3,201",
+                badge: "おでかけ着 👕",
+                url: "https://suzuri.jp/udonmikan/20696202/t-shirt/s/white"
+            },
+            {
+                id: 3,
+                title: "あかちゃんヨシ！ 初心者スタイ",
+                category: "apparel",
+                categoryLabel: "ベビースタイ",
+                desc: "赤ちゃん本人が着て「ヨシ！」。お着替えやおでかけが楽しくなる赤ちゃん専用スタイ。",
+                price: "2,002",
+                badge: "ギフトに最適 👶",
+                url: "https://suzuri.jp/udonmikan/20695977/united-athle-10-0oz-sweat-bib-ura-pile-for-shop/free/ash"
+            },
+            {
+                id: 4,
+                title: "あかちゃんヨシ！ しずかにしてねトート",
+                category: "goods",
+                categoryLabel: "トートバッグ",
+                desc: "オムツやお着替えが入って大活躍。",
+                price: "2,970",
+                badge: "大容量 🛍️",
+                url: "https://suzuri.jp/udonmikan/20696054/tote-bag/m/natural"
+            },
+            {
+                id: 5,
+                title: "あかちゃんヨシ！ ほっこりマグカップ",
+                category: "goods",
+                categoryLabel: "マグカップ",
+                desc: "ワンオペ育児の合間、ちょっと一息のカフェタイムに。見るたび笑顔になれるマグ。",
+                price: "2,156",
+                badge: "リラックス ☕",
+                url: "https://suzuri.jp/udonmikan/20696054/mug/m/white"
+            },
+            {
+                id: 6,
+                title: "あかちゃんヨシ！ アクリルキーホルダー",
+                category: "goods",
+                categoryLabel: "キーホルダー",
+                desc: "マザーズバッグやリュックにつけてワンポイントに！いつでもどこでもヨシ！",
+                price: "1,344",
+                badge: "プチギフト 🔑",
+                url: "https://suzuri.jp/udonmikan/20695977/acrylic-keychain/50x50mm/clear"
+            }
+        ];
+
+        // ==========================================
+        // LINEスタンプ & 絵文字データ
+        // ==========================================
+        const STAMP_LIST = [
+            { id: "35872218", title: "子育ての気づかいある連絡！赤ちゃんヨシ！", desc: "育児や日常会話でちょっとした気づかいを。ヨシ！と肯定してくれているような赤ちゃん。" },
+            { id: "32734717", title: "はむおの育児・子育てスタンプ【日本語】", desc: "毎日の育児シーンに寄り添う、ほっこりスタンプ。表情豊かなはむおが応援します。" },
+            { id: "32733388", title: "はむおの育児・子育てスタンプ【文字なし】", desc: "文字なしで色んなシーンに対応。グローバルに使える可愛いスタンプです。" }
+        ];
+
+        const EMOJI_LIST = [
+            { id: "69800ee814bcdb346ea25851", title: "育児・子育てドット絵文字", desc: "メッセージの合間にちょこんと可愛い。妊娠中から使える育児の絵文字セット！" },
+            { id: "6983062a26782733e6b55f28", title: "はむお育児・子育てドット絵文字", desc: "かわいい赤ちゃんハムスターはむおと家族のドット絵。育児トークを賑やかに！" }
+        ];
+
+        // ==========================================
+        // 月齢別アドバイスデータ
+        // ==========================================
+        const TIPS_DATA = {
+            '0-3': {
+                title: "0〜3ヶ月頃：とにかくママとパパの体調優先でヨシ！",
+                icon: "🍼",
+                color: "emerald",
+                bgClass: "bg-emerald-50 border-emerald-200",
+                points: [
+                    "昼夜の区別がまだない時期。赤ちゃんが寝たら一緒に目を閉じるのが一番！",
+                    "家事は手を抜きまくりでOK！惣菜・便利家電・頼れるものは何でも使おう。",
+                    "泣くのは「お腹空いた・オムツ・甘えたい」の合図。抱っこで乗り切れたら百点満点！"
+                ],
+                yoshiWord: "今日も生き抜いた！それだけで大成功ヨシ！👍"
+            },
+            '4-6': {
+                title: "4〜6ヶ月頃：離乳食も自分のペースでゆったりヨシ！",
+                icon: "🥣",
+                color: "orange",
+                bgClass: "bg-orange-50 border-orange-200",
+                points: [
+                    "首がしっかりすわり、あやせばニッコリ笑顔が増える最高の癒やし期。",
+                    "離乳食は「食べたらラッキー」くらいのゆるい気持ちでスタート！",
+                    "他の子と成長を比べなくて大丈夫。うちの子のペースが正解！"
+                ],
+                yoshiWord: "一口食べてくれたらハッピー！ヨシ！👍"
+            },
+            '7-11': {
+                title: "7〜11ヶ月頃：安全対策をしっかり固めてヨシ！",
+                icon: "🚼",
+                color: "amber",
+                bgClass: "bg-amber-50 border-amber-200",
+                points: [
+                    "ハイハイやずりバイで行動範囲が爆発的に広がる時期。",
+                    "誤飲しやすい小さなもの・危険なコード類は赤ちゃんの目線になって徹底ガード！",
+                    "後追いが激しくなっても「それだけ信頼されてる証拠」と割り切ろう。"
+                ],
+                yoshiWord: "おうちの安全対策バッチリ完了！ヨシ！👍"
+            },
+            '12plus': {
+                title: "1歳〜：自我の発達＆イヤイヤも成長の証でヨシ！",
+                icon: "👟",
+                color: "rose",
+                bgClass: "bg-rose-50 border-rose-200",
+                points: [
+                    "たっちやあんよができるようになり、自分でやりたい気持ちがむくむく。",
+                    "「自分で！」が増えるのは順調に心が育っている証拠。",
+                    "時には「どっちでもいいよ〜」と選択肢を出してあげるのも効果的！"
+                ],
+                yoshiWord: "自分の気持ちを言えたね！成長ヨシ！👍"
+            }
+        };
+
+        // SUZURIグッズレンダリング
+        function renderGoods(items) {
+            const container = document.getElementById('goods-grid');
+            if (!container) return;
+            container.innerHTML = items.map(item => `
+                <div class="card-cute bg-white rounded-3xl p-6 border-2 border-orange-100 flex flex-col justify-between shadow-sm relative overflow-hidden group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-black text-yoshiorange bg-orange-50 px-3 py-1 rounded-full border border-orange-100">
+                                ${item.categoryLabel}
+                            </span>
+                            <span class="bg-amber-100 text-warmbrown text-xs font-black px-2.5 py-0.5 rounded-full">
+                                ${item.badge}
+                            </span>
+                        </div>
+                        <h3 class="font-black text-lg text-warmbrown mb-2 leading-snug">${item.title}</h3>
+                        <p class="text-xs font-bold text-warmbrown/70 mb-6 leading-relaxed">${item.desc}</p>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline gap-1 mb-4 border-t border-orange-50 pt-4">
+                            <span class="text-xs font-bold text-warmbrown/60">SUZURI価格:</span>
+                            <span class="text-2xl font-black text-yoshiorange">¥${item.price}</span>
+                            <span class="text-xs font-bold text-warmbrown/60">（税込）</span>
+                        </div>
+                        <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
+                           class="w-full py-3 bg-yoshiorange hover:bg-orange-600 text-white font-black text-sm rounded-2xl flex items-center justify-center gap-2 shadow-sm hover:shadow-md transition active:scale-95">
+                            <span>SUZURIで購入</span>
+                            <span>🛍️</span>
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // フィルター切り替え
+        function filterGoods(category) {
+            const buttons = document.querySelectorAll('#goods-filter button');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-yoshiorange', 'text-white');
+                btn.classList.add('bg-orange-50', 'text-warmbrown');
+            });
+            if (event && event.target) {
+                event.target.classList.remove('bg-orange-50', 'text-warmbrown');
+                event.target.classList.add('bg-yoshiorange', 'text-white');
+            }
+
+            if (category === 'all') {
+                renderGoods(SUZURI_GOODS);
+            } else {
+                const filtered = SUZURI_GOODS.filter(g => g.category === category);
+                renderGoods(filtered);
+            }
+        }
+
+        // 月齢アドバイス切り替え
+        function switchTip(key) {
+            const data = TIPS_DATA[key];
+            const container = document.getElementById('tip-content');
+            if (!container || !data) return;
+
+            // タブのアクティブスタイル更新
+            document.querySelectorAll('.tip-tab').forEach(tab => {
+                tab.classList.remove('ring-4', 'ring-yoshiorange/30', 'bg-orange-50');
+            });
+            const activeTab = document.getElementById(`tab-${key}`);
+            if (activeTab) {
+                activeTab.classList.add('ring-4', 'ring-yoshiorange/30', 'bg-orange-50');
+            }
+
+            container.className = `bg-white rounded-3xl p-6 sm:p-10 shadow-lg border-2 border-orange-100 relative overflow-hidden transition-all duration-300`;
+            container.innerHTML = `
+                <div class="flex items-start gap-4 mb-6">
+                    <span class="text-4xl p-3 rounded-2xl bg-orange-100">${data.icon}</span>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-black text-warmbrown">${data.title}</h3>
+                        <p class="text-xs font-bold text-yoshiorange mt-1">おすすめの過ごしかた</p>
+                    </div>
+                </div>
+                <ul class="space-y-3 mb-8">
+                    ${data.points.map(pt => `
+                        <li class="flex items-start gap-3 text-sm sm:text-base font-bold text-warmbrown/90">
+                            <span class="text-yoshiorange font-black mt-0.5">✔</span>
+                            <span>${pt}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+                <div class="bg-gradient-to-r from-orange-100 to-amber-100 p-4 rounded-2xl text-center border border-orange-200">
+                    <span class="font-black text-yoshiorange text-base sm:text-lg">「 ${data.yoshiWord} 」</span>
+                </div>
+            `;
+        }
+
+        // LINEスタンプ描画
+        function renderStamps() {
+            const container = document.getElementById('stampList');
+            if (!container) return;
+            container.innerHTML = STAMP_LIST.map(stamp => {
+                const imgUrl = `https://stickershop.line-scdn.net/stickershop/v1/product/${stamp.id}/LINEStorePC/main.png`;
+                const storeUrl = `https://store.line.me/stickershop/product/${stamp.id}/ja`;
+                return `
+                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-orange-50/50 border border-orange-100 hover:bg-orange-50 transition">
+                        <img src="${imgUrl}" alt="${stamp.title}" class="w-20 h-20 object-contain flex-shrink-0" onerror="this.src='https://via.placeholder.com/150?text=LINE'">
+                        <div class="flex-grow">
+                            <h4 class="font-black text-sm text-warmbrown mb-1">${stamp.title}</h4>
+                            <p class="text-xs font-bold text-warmbrown/70 mb-3">${stamp.desc}</p>
+                            <a href="${storeUrl}" target="_blank" class="inline-block px-4 py-1.5 bg-[#06C755] hover:bg-green-600 text-white font-bold text-xs rounded-full shadow-sm transition">
+                                LINEストアで見る 🛍️
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // LINE絵文字描画
+        function renderEmojis() {
+            const container = document.getElementById('emojiList');
+            if (!container) return;
+            container.innerHTML = EMOJI_LIST.map(emoji => {
+                const storeUrl = `https://store.line.me/emojishop/product/${emoji.id}/ja`;
+                return `
+                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-pink-50/50 border border-pink-100 hover:bg-pink-50 transition">
+                        <div class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center text-3xl shadow-inner flex-shrink-0">🎨</div>
+                        <div class="flex-grow">
+                            <h4 class="font-black text-sm text-warmbrown mb-1">${emoji.title}</h4>
+                            <p class="text-xs font-bold text-warmbrown/70 mb-3">${emoji.desc}</p>
+                            <a href="${storeUrl}" target="_blank" class="inline-block px-4 py-1.5 bg-pink-400 hover:bg-pink-500 text-white font-bold text-xs rounded-full shadow-sm transition">
+                                LINEストアで見る 🛍️
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // SNSシェア
+        function shareSNS(type) {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent("あかちゃんヨシ！グッズ＆育児ステーション👶👍 車に乗っていますグッズや育児アドバイスをチェック！");
+            let shareUrl = "";
+            if (type === 'line') shareUrl = `https://line.me/R/msg/text/?${text}%20${url}`;
+            if (type === 'x') shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+            if (shareUrl) window.open(shareUrl, '_blank');
+        }
+
+        // URLコピー
+        function copyURL() {
+            const input = document.getElementById('copyInput');
+            if (!input) return;
+            input.value = window.location.href;
+            input.select();
+            document.execCommand('copy');
+            
+            const toast = document.getElementById('toast');
+            if (toast) {
+                toast.className = "show";
+                setTimeout(() => { toast.className = ""; }, 3000);
+            }
+        }
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGoods(SUZURI_GOODS);
+            switchTip('0-3');
+            renderStamps();
+            renderEmojis();
+        });
+    </script>
+</body>
+</html>
